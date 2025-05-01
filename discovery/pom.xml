@@ -10,7 +10,7 @@
     <artifactId>discovery</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>discovery</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Discovery Server for Weather project</description>
 
     <dependencies>
         <dependency>
@@ -29,4 +29,12 @@
             <version>1.19.1</version>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
