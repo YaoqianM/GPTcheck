@@ -1,10 +1,13 @@
 package com.example.gateway;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
@@ -13,7 +16,11 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 @EnableEurekaClient
 @EnableZuulProxy
 
-@SpringBootApplication
+@SpringBootApplication(
+        exclude = {
+                org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration.class
+        }
+)
 public class GatewayApplication {
 
     public static void main(String[] args) {
@@ -26,5 +33,8 @@ public class GatewayApplication {
     public WebClient.Builder getWebClientBuilder() {
         return WebClient.builder();
     }
-
+    @Qualifier("webFluxConversionService")
+    public ConversionService webFluxConversionService() {
+        return new DefaultFormattingConversionService();
+    }
 }

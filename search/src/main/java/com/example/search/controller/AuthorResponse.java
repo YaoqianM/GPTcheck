@@ -1,4 +1,4 @@
-package com.example.search.model;
+package com.example.search.controller;
 
 public class AuthorResponse {
     private Long id;
