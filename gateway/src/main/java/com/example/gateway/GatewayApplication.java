@@ -8,6 +8,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.format.support.DefaultFormattingConversionService;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
@@ -33,8 +34,11 @@ public class GatewayApplication {
     public WebClient.Builder getWebClientBuilder() {
         return WebClient.builder();
     }
+
+    @Bean
     @Qualifier("webFluxConversionService")
-    public ConversionService webFluxConversionService() {
+    public FormattingConversionService webFluxConversionService() {
         return new DefaultFormattingConversionService();
     }
+
 }
