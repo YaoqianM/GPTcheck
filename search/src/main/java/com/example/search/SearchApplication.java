@@ -19,7 +19,7 @@ public class SearchApplication {
 
     @Bean
     @LoadBalanced
-    public RestTemplate restTemplate() {
+    public RestTemplate searchRestTemplate() {
         return new RestTemplate();
     }
 }
